@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TrackComponent } from './components/track/track.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthService } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
