@@ -1,0 +1,10 @@
+<div>
+    <h1>Playlist</h1>
+    <ul>
+        <li *ngFor="let track of tracks">
+            <a [routerLink]="['track', track.id]">{{ track.artist }}</a>
+            <p>{{ track.album }}</p>
+            <img src="{{ track.images }}" width="{{ track.image_width }}" height="{{ track.image_height }}" alt="">
+        </li>
+    </ul>
+</div>
