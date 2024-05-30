@@ -11,6 +11,8 @@ import { TrackComponent } from './components/track/track.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthService } from './services/auth.service';
 
+import { DurationPipe } from './pipes/duration.pipe';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -21,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   declarations: [
     AppComponent,
     PlaylistComponent,
-    TrackComponent
+    TrackComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
