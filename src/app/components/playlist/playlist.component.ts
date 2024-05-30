@@ -1,3 +1,4 @@
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Track } from 'src/app/models/track.interface';
@@ -6,7 +7,16 @@ import { PlaylistService } from 'src/app/services/playlist.service';
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
-  styleUrls: ['./playlist.component.css']
+  styleUrls: ['./playlist.component.css'],
+  animations: [
+    trigger('playlistAnimation', [
+      transition('* <=> *', [
+        query(':enter',
+          [style({opacity: 0}), stagger('200ms', animate('500ms ease-out', style({opacity: 1})))], {optional: true}
+        )
+      ])
+    ])
+  ]
 })
 export class PlaylistComponent implements OnInit {
 
@@ -61,5 +71,3 @@ export class PlaylistComponent implements OnInit {
     }
   }
 }
-
-

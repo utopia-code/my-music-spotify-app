@@ -10,7 +10,7 @@
   </mat-button-toggle-group>
   
 
-  <div *ngIf="showCardsLayout" class="row">
+  <div *ngIf="showCardsLayout" [@playlistAnimation]="tracks.length" class="row">
 
     <mat-card class="card" *ngFor="let track of tracks" >
       <img mat-card-image src="{{ track.image }}" alt="Cover of {{ track.album }}">
@@ -30,7 +30,7 @@
   
   </div>
 
-  <table *ngIf="showGridLayout" mat-table [dataSource]="dataSource">
+  <table *ngIf="showGridLayout" [@playlistAnimation]="dataSource.data.length" mat-table [dataSource]="dataSource">
   
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef> Cover </th>
