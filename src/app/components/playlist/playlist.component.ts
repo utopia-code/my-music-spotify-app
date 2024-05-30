@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Track } from 'src/app/models/track.interface';
 import { PlaylistService } from 'src/app/services/playlist.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-playlist',
@@ -29,12 +30,21 @@ export class PlaylistComponent implements OnInit {
   showGridLayout: boolean = false;
   defaultLayout: string = 'card';
 
-  constructor(private playlistService: PlaylistService) {}
+  constructor(
+    private playlistService: PlaylistService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
+    this.loadPlaylist();
+    this.onToggleChange(this.defaultLayout);
+  }
 
-    this.playlistService.getAllTracks().subscribe(
-      (res) => {
+  loadPlaylist(): void {
+
+    this.showSpinner(true);
+
+    this.playlistService.getAllTracks().subscribe((res) => {
 
         const items = res.items;
 
@@ -56,12 +66,17 @@ export class PlaylistComponent implements OnInit {
 
         this.dataSource.data = this.tracks;
 
+        this.showSpinner(false);
       });
+  }
 
-      this.onToggleChange(this.defaultLayout);
+  showSpinner(value: boolean): void {
+    this.sharedService.spinnerManagement.next(value);
   }
 
   onToggleChange(value: string) {
+    this.showSpinner(true);
+
     if ( value === 'grid') {
       this.showCardsLayout = false;
       this.showGridLayout = true;
@@ -69,5 +84,7 @@ export class PlaylistComponent implements OnInit {
       this.showCardsLayout = true;
       this.showGridLayout = false;
     }
+
+    this.loadPlaylist();
   }
 }
