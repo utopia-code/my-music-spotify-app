@@ -26,7 +26,7 @@ export class PlaylistComponent implements OnInit {
           this.tracks.push(
             {
               id: track.id,
-              album: track.album.na,
+              album: track.album.name,
               artist: track.artists[0].name,
               images: track.album.images[0].url,
               image_width: track.album.images[0].width,

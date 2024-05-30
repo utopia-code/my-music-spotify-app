@@ -1,10 +1,23 @@
-<div>
-    <h1>Playlist</h1>
-    <ul>
-        <li *ngFor="let track of tracks">
-            <a [routerLink]="['track', track.id]">{{ track.artist }}</a>
-            <p>{{ track.album }}</p>
-            <img src="{{ track.images }}" width="{{ track.image_width }}" height="{{ track.image_height }}" alt="">
-        </li>
-    </ul>
+<div class="container">
+  <div class="row">
+
+    <mat-card class="card" *ngFor="let track of tracks" >
+      <img mat-card-image src="{{ track.images }}" alt="Cover of {{ track.album }}">
+      <mat-card-header>
+        <mat-card-title>{{ track.artist }}</mat-card-title>
+        <mat-card-subtitle>{{ track.album }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Hier data for the album
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button><a [routerLink]="['track', track.id]">Show album</a></button>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  
+  </div>
+  
 </div>
