@@ -1,0 +1,12 @@
+mat-toolbar {
+    background-color: var(--primary-dark-color);
+    color: var(--secondary-color);
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+}
