@@ -1,20 +1,18 @@
-
 @use '@angular/material' as mat;
 
 @include mat.core();
 
-$theme: mat.define-theme((
+$default-primary: mat.define-palette(mat.$purple-palette);
+$default-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
+$default-warn: mat.define-palette(mat.$red-palette);
+
+$default-theme: mat.define-light-theme((
   color: (
-    theme-type: dark,
-    primary: (
-      default: #5f0fb3,
-      light: #f0ecf4,
-      dark: #360464
-    ),
-    accent: #d4f478,
-    warn: mat.define-palette(mat.$red-palette),
+    primary: $default-primary,
+    accent: $default-accent,
+    warn: $default-warn,
   )
 ));
 
-@include mat.all-component-themes($theme);
+@include mat.all-component-themes($default-theme);
 
