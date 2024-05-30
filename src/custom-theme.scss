@@ -2,8 +2,72 @@
 
 @include mat.core();
 
-$default-primary: mat.define-palette(mat.$purple-palette);
-$default-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
+$default-primary: mat.define-palette((
+  50: #f2ecf5,
+  100: #e0d1f0,
+  200: #d1b5e6,
+  300: #b489d1,
+  400: #9961c1,
+  500: #6900ba,
+  600: #5e00a9,
+  700: #4e0093,
+  800: #3c007d,
+  900: #2b005e,
+  A100: #e0d1f0,
+  A200: #d1b5e6,
+  A400: #9961c1,
+  A700: #4e0093,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: black,
+    A400: white,
+    A700: white
+  )
+));
+
+$default-accent: mat.define-palette((
+  50: #f6ffe0,
+  100: #eaffc2,
+  200: #dcffa0,
+  300: #ceff7d,
+  400: #c4ff61,
+  500: #cef563,
+  600: #b9ea58,
+  700: #a4df4c,
+  800: #8fd440,
+  900: #79c734,
+  A100: #f6ffe0,
+  A200: #eaffc2,
+  A400: #c4ff61,
+  A700: #a4df4c,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
+    A100: black,
+    A200: black,
+    A400: black,
+    A700: black
+  )
+));
+
 $default-warn: mat.define-palette(mat.$red-palette);
 
 $default-theme: mat.define-light-theme((
