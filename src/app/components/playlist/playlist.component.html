@@ -2,19 +2,18 @@
   <div class="row">
 
     <mat-card class="card" *ngFor="let track of tracks" >
-      <img mat-card-image src="{{ track.images }}" alt="Cover of {{ track.album }}">
-      <mat-card-header>
+      <img mat-card-image src="{{ track.image }}" alt="Cover of {{ track.album }}">
+      <mat-card-content>
         <mat-card-title>{{ track.artist }}</mat-card-title>
         <mat-card-subtitle>{{ track.album }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Hier data for the album
-        </p>
+        <ul>
+          <li>Type: {{ track.albumType }}</li>
+          <li>Duration: {{ track.duration | duration}}</li>
+          <li>Popularity: {{ track.popularity }}</li>
+        </ul>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button><a [routerLink]="['track', track.id]">Show album</a></button>
-        <!-- <button mat-button>SHARE</button> -->
+        <button mat-flat-button color="accent"><a [routerLink]="['track', track.id]">Show album</a></button>
       </mat-card-actions>
     </mat-card>
   

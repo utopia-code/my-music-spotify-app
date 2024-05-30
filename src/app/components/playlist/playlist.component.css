@@ -35,3 +35,31 @@
         margin-right: -10px;
     }
 }
+
+button {
+    width: 100%;
+    margin: 10px 0 16px;
+}
+
+mat-card-title {
+    color: var(--primary-dark-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 16px 0 10px;
+}
+
+mat-card-subtitle {
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 1);
+}
+
+mat-card-title,
+mat-card-subtitle {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+ul {
+    color: rgba(0, 0, 0, 0.54);
+}
