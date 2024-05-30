@@ -21,10 +21,13 @@ export class TrackComponent implements OnInit {
     this.track = {
       id: '',
       album: '',
+      albumType: '',
       artist: '',
-      images: '',
-      image_width: 0,
-      image_height: 0
+      image: '',
+      duration: 0,
+      popularity: 0,
+      previewURL: '',
+      externalURL: ''
     }
   }
 
@@ -34,14 +37,17 @@ export class TrackComponent implements OnInit {
 
     if (identifier) {
       this.playlistService.getTrackById(identifier).subscribe((track: any) => {
-  
+
         this.track = {
           id: track.id,
-          album: track.album.na,
+          album: track.album.name,
+          albumType: track.album.album_type,
           artist: track.artists[0].name,
-          images: track.album.images[0].url,
-          image_width: track.album.images[0].width,
-          image_height: track.album.images[0].height
+          image: track.album.images[0].url,
+          duration: track.duration_ms,
+          popularity: track.popularity,
+          previewURL: track.preview_url,
+          externalURL: track.external_urls.spotify
         }
   
       });

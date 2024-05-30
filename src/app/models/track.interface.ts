@@ -1,9 +1,12 @@
 export interface Track {
     id: string;
     album: string;
+    albumType: string;
     artist: string;
-    images: string;
-    image_width: number;
-    image_height: number;
+    image: string;
+    duration: number;
+    popularity: number;
+    previewURL: string;
+    externalURL: string;
 }
 
