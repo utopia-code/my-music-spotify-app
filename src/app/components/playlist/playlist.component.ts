@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Track } from 'src/app/models/track.interface';
 import { PlaylistService } from 'src/app/services/playlist.service';
 
@@ -9,7 +10,14 @@ import { PlaylistService } from 'src/app/services/playlist.service';
 })
 export class PlaylistComponent implements OnInit {
 
-  tracks: Track[] = []
+  tracks: Track[] = [];
+
+  dataSource = new MatTableDataSource<Track>();
+  columnsToDisplay: string[] = ['image', 'artist', 'album', 'albumType', 'duration', 'popularity', 'id'];
+
+  showCardsLayout: boolean = true;
+  showGridLayout: boolean = false;
+  defaultLayout: string = 'card';
 
   constructor(private playlistService: PlaylistService) {}
 
@@ -20,11 +28,10 @@ export class PlaylistComponent implements OnInit {
 
         const items = res.items;
 
-        items.forEach((item: any) => {
+        this.tracks = items.map((item: any) => {
           const track = item.track;
 
-          this.tracks.push(
-            {
+          return {
               id: track.id,
               album: track.album.name,
               albumType: track.album.album_type,
@@ -35,10 +42,24 @@ export class PlaylistComponent implements OnInit {
               previewURL: track.preview_url,
               externalURL: track.external_urls.spotify
             }    
-          );
         })
-        
+
+        this.dataSource.data = this.tracks;
+
       });
 
+      this.onToggleChange(this.defaultLayout);
+  }
+
+  onToggleChange(value: string) {
+    if ( value === 'grid') {
+      this.showCardsLayout = false;
+      this.showGridLayout = true;
+    } else if ( value === 'card' ) {
+      this.showCardsLayout = true;
+      this.showGridLayout = false;
+    }
   }
 }
+
+

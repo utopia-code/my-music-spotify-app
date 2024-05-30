@@ -14,9 +14,11 @@ import { AuthService } from './services/auth.service';
 import { DurationPipe } from './pipes/duration.pipe';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
@@ -35,7 +37,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatButtonToggleModule
   ],
   providers: [
     AuthService,
