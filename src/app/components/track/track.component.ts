@@ -12,6 +12,7 @@ export class TrackComponent implements OnInit {
 
   track: Track;
   token: string = '';
+  showDetailContent: boolean = false;
 
   constructor(
     private playlistService: PlaylistService,
@@ -26,8 +27,8 @@ export class TrackComponent implements OnInit {
       image: '',
       duration: 0,
       popularity: 0,
-      previewURL: '',
-      externalURL: ''
+      previewURI: '',
+      albumURI: ''
     }
   }
 
@@ -46,13 +47,16 @@ export class TrackComponent implements OnInit {
           image: track.album.images[0].url,
           duration: track.duration_ms,
           popularity: track.popularity,
-          previewURL: track.preview_url,
-          externalURL: track.external_urls.spotify
+          previewURI: track.uri,
+          albumURI: track.album.uri
         }
   
       });
     }
+  }
 
+  showAllDetails(): void {
+    this.showDetailContent = !this.showDetailContent;
   }
 
 }

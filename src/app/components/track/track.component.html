@@ -1,6 +1,70 @@
-<div>
-    <img src="{{ track.image }}" alt="">
-    <p>{{ track.artist }}</p>
+<div class="container">
 
-    <a href="https://open.spotify.com/intl-de/track/{{track.id}}" target="_blank">Escuchar en Spotify</a>
+    <div class="detail-intro">
+        <div class="col-8">
+            <img src="{{ track.image }}" alt="Cover album {{ track.album }}">
+        </div>
+        <div class="col-4">
+            <button 
+                mat-raised-button 
+                color="warn"
+                [routerLink]="['/']">Back</button>
+        </div>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="showAllDetails()">Show all details</button>
+
+    <mat-tab-group *ngIf="showDetailContent" [color]="'primary'" [backgroundColor]="'accent'">
+        <mat-tab label="Artist">
+            <div class="tab-content">
+                <div class="tab-title">Artist</div>
+                <div class="tab-text">{{ track.artist }}</div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Album">
+            <div class="tab-content">
+                <div class="tab-title">Album</div>
+                <div class="tab-text">{{ track.album }}</div>
+                <iframe 
+                [src]="track.albumURI  | uri" 
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"></iframe>
+            </div>
+        </mat-tab>
+        <mat-tab label="Type">
+            <div class="tab-content">
+                <div class="tab-title">Type</div>
+                <div class="tab-text">{{ track.albumType | titlecase }}</div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Duration">
+            <div class="tab-content">
+                <div class="tab-title">Duration</div>
+                <div class="tab-text">{{ track.duration | duration }}</div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Popularity">
+            <div class="tab-content">
+                <div class="tab-title">Popularity</div>
+                <div class="tab-text">{{ track.popularity }}</div>
+                <mat-progress-bar 
+                    mode="determinate" 
+                    [value]="track.popularity"
+                    [color]="'primary'">
+                </mat-progress-bar>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Preview">
+            <div class="tab-content">
+                <iframe 
+                [src]="track.previewURI | uri" 
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"></iframe>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
 </div>

@@ -1,0 +1,70 @@
+.detail-intro {
+    display: flex;
+    margin: 16px auto;
+}
+
+.col-8 {
+    margin-right: auto;
+}
+
+@media screen and (max-width: 767.89px) {
+    .detail-intro {
+        flex-direction: column;
+    }
+
+    .col-4 {
+        order: 0;
+        margin-bottom: 16px;
+    }
+
+    .col-8 {
+        order: 1;
+    }
+}
+
+mat-tab-group {
+    margin-top: 16px;
+}
+
+.tab-content {
+    min-height: 25vh;
+    background-color: var(--primary-light-color);
+}
+
+.tab-title {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    padding-top: 30px;
+}
+
+.tab-text {
+    color: var(--primary-dark-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding-top: 16px;
+}
+
+.tab-title,
+.tab-text {
+    width: 100%;
+    text-align: center;
+}
+
+iframe {
+    width: calc(100% - 40px);
+    height: 100%;
+    padding-top: 32px;
+    margin: 0 auto;
+    display: block;
+}
+
+mat-progress-bar {
+    height: 30px;
+    width: calc(100% - 40px);
+    margin: 16px auto;
+}
+
+:host {
+    --mdc-linear-progress-track-height: 30px;
+}

@@ -11,14 +11,17 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthService } from './services/auth.service';
 
 import { DurationPipe } from './pipes/duration.pipe';
+import { UriPipe } from './pipes/uri.pipe';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
@@ -28,8 +31,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     AppComponent,
     PlaylistComponent,
     TrackComponent,
+    SpinnerComponent,
     DurationPipe,
-    SpinnerComponent
+    UriPipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     MatIconModule,
     MatTableModule,
     MatButtonToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthService,
