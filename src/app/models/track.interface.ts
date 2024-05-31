@@ -6,7 +6,7 @@ export interface Track {
     image: string;
     duration: number;
     popularity: number;
-    previewURL: string;
-    externalURL: string;
+    previewURI: string;
+    albumURI: string;
 }
 

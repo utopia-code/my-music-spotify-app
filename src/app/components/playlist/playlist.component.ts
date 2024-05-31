@@ -59,8 +59,8 @@ export class PlaylistComponent implements OnInit {
               image: track.album.images[0].url,
               duration: track.duration_ms,
               popularity: track.popularity,
-              previewURL: track.preview_url,
-              externalURL: track.external_urls.spotify
+              previewURI: track.preview_url,
+              albumURI: track.external_urls.spotify
             }    
         })
 
