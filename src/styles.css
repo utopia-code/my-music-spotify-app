@@ -39,7 +39,11 @@ a {
     color: var(--primary-dark-color);
 }
 
-button a {
+button {
     font-weight: 600;
     font-size: 1rem;
+}
+
+.text-nowrap {
+    white-space: nowrap;
 }

@@ -1,7 +1,8 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Track } from 'src/app/models/track.interface';
+import { CardDTO } from 'src/app/models/cardDTO.interface';
+import { TrackDTO } from 'src/app/models/trackDTO.interface';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -21,9 +22,10 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class PlaylistComponent implements OnInit {
 
-  tracks: Track[] = [];
+  tracks: TrackDTO[] = [];
+  cards: CardDTO[] = [];
 
-  dataSource = new MatTableDataSource<Track>();
+  dataSource = new MatTableDataSource<TrackDTO>();
   columnsToDisplay: string[] = ['image', 'artist', 'album', 'albumType', 'duration', 'popularity', 'id'];
 
   showCardsLayout: boolean = true;
@@ -55,7 +57,7 @@ export class PlaylistComponent implements OnInit {
               id: track.id,
               album: track.album.name,
               albumType: track.album.album_type,
-              artist: track.artists[0].name,
+              artist: track.artists.map((artist: any) => artist.name).join(' & '),
               image: track.album.images[0].url,
               duration: track.duration_ms,
               popularity: track.popularity,
@@ -66,7 +68,19 @@ export class PlaylistComponent implements OnInit {
 
         this.dataSource.data = this.tracks;
 
-        this.showSpinner(false);
+        this.tracks.forEach((track) => {
+          this.cards.push({
+            id: track.id, 
+            image: track.image,
+            title: track.artist,
+            subtitle: track.album,
+            type: track.albumType,
+            duration: track.duration,
+            popularity: track.popularity
+          })
+        })
+
+        this.showSpinner(false);;
       });
   }
 
@@ -85,6 +99,8 @@ export class PlaylistComponent implements OnInit {
       this.showGridLayout = false;
     }
 
-    this.loadPlaylist();
+    setTimeout(() => {
+      this.showSpinner(false);
+    }, 500);
   }
 }

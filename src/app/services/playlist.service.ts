@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Track } from '../models/track.interface';
+import { TrackDTO } from '../models/trackDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class PlaylistService {
     return this.http.get<any>(`${this.url}v1/playlists/${this.id_playlist}/tracks`);
   }
 
-  getTrackById(id: string): Observable<Track> {
-    return this.http.get<Track>(`${this.url}v1/tracks/${id}`);
+  getTrackById(id: string): Observable<TrackDTO> {
+    return this.http.get<TrackDTO>(`${this.url}v1/tracks/${id}`);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Track } from 'src/app/models/track.interface';
+import { TrackDTO } from 'src/app/models/trackDTO.interface';
 import { PlaylistService } from 'src/app/services/playlist.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { PlaylistService } from 'src/app/services/playlist.service';
 })
 export class TrackComponent implements OnInit {
 
-  track: Track;
+  track: TrackDTO;
   token: string = '';
   showDetailContent: boolean = false;
 
@@ -43,7 +43,7 @@ export class TrackComponent implements OnInit {
           id: track.id,
           album: track.album.name,
           albumType: track.album.album_type,
-          artist: track.artists[0].name,
+          artist: track.artists.map((artist: any) => artist.name).join(' & '),
           image: track.album.images[0].url,
           duration: track.duration_ms,
           popularity: track.popularity,
