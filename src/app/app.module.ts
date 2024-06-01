@@ -25,6 +25,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { CardComponent } from './shared/card/card.component';
+import { GridComponent } from './shared/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     TrackComponent,
     SpinnerComponent,
     DurationPipe,
-    UriPipe
+    UriPipe,
+    CardComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
