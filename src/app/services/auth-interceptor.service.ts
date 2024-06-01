@@ -20,25 +20,37 @@ import { AuthService } from './auth.service';
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    if (req.url === 'https://accounts.spotify.com/api/token') {
+    if (req.url.includes('https://accounts.spotify.com/api/token')) {
       return next.handle(req);
     }
 
-    return from(this.authService.getAccessToken()).pipe(
-      switchMap(token => {
-        const cloneReq = req.clone({
-          setHeaders: {
-            'Content-Type': 'application/json; charset=utf-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-          }
-        });
-        return next.handle(cloneReq);
-      }),
-      catchError(error => {
-        console.error('Error in interceptor', error);
-        throw error;
-      })
-    );
+    let token = this.authService.getCachedToken();
+    if (token) {
+      const cloneReq = req.clone({
+        setHeaders: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      });
+      return next.handle(cloneReq);
+    } else {
+      return from(this.authService.getAccessToken()).pipe(
+        switchMap(token => {
+          const cloneReq = req.clone({
+            setHeaders: {
+              'Content-Type': 'application/json; charset=utf-8',
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          });
+          return next.handle(cloneReq);
+        }),
+        catchError(error => {
+          console.error('Error in interceptor', error);
+          throw error;
+        })
+      );
+    }
   }
 }

@@ -11,6 +11,7 @@ export class AuthService {
   private clientSecret = '37b3164ac9ce49589cbf64be6ca1b1e0';
   private tokenUrl = 'https://accounts.spotify.com/api/token';
   private accessToken: string = '';
+  private localStorageKey: string = 'spotify_access_token';
 
   constructor(private http: HttpClient) {}
 
@@ -29,12 +30,17 @@ export class AuthService {
       .pipe(
         map(response => {
           this.accessToken = response.access_token;
+          localStorage.setItem(this.localStorageKey, this.accessToken);
           return this.accessToken;
         }),
         catchError(error => {
           console.error('Error obtaining access token', error);
           throw error;
         })
-      );
+    );
+  }
+
+  getCachedToken(): string | null {
+    return localStorage.getItem(this.localStorageKey);
   }
 }
