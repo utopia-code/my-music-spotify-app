@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { TrackComponent } from './components/track/track.component';
+import { CardComponent } from './shared/card/card.component';
+import { GridComponent } from './shared/grid/grid.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
@@ -24,9 +27,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { CardComponent } from './shared/card/card.component';
-import { GridComponent } from './shared/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +34,10 @@ import { GridComponent } from './shared/grid/grid.component';
     PlaylistComponent,
     TrackComponent,
     SpinnerComponent,
-    DurationPipe,
-    UriPipe,
     CardComponent,
-    GridComponent
+    GridComponent,
+    DurationPipe,
+    UriPipe
   ],
   imports: [
     BrowserModule,

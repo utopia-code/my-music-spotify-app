@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { GridDTO } from 'src/app/models/gridDTO.interface';
 
 @Component({
   selector: 'app-grid',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./grid.component.css']
 })
 export class GridComponent {
-
+  @Input() dataSource = new MatTableDataSource<GridDTO>;
+  @Input() columnsToDisplay: string[] = [];
 }

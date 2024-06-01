@@ -11,57 +11,18 @@
   
 
   <div *ngIf="showCardsLayout" [@playlistAnimation]="tracks.length" class="row">
-
     <app-card 
       class="card"
       *ngFor="let card of cards"
       [card]="card"></app-card>
-  
   </div>
 
   <div *ngIf="showGridLayout" class="table">
-    <table [@playlistAnimation]="dataSource.data.length" mat-table [dataSource]="dataSource">
-  
-      <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef> Cover </th>
-        <td mat-cell *matCellDef="let track"> <img src="{{ track.image }}" alt="Cover of {{ track.album }}"> </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="artist">
-        <th mat-header-cell *matHeaderCellDef> Artist </th>
-        <td mat-cell *matCellDef="let track"> {{track.artist}} </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="album">
-        <th mat-header-cell *matHeaderCellDef> Album </th>
-        <td mat-cell *matCellDef="let track"> {{track.album}} </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="albumType">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let track"> {{track.albumType}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="duration">
-        <th mat-header-cell *matHeaderCellDef> Duration </th>
-        <td mat-cell *matCellDef="let track"> {{track.duration}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="popularity">
-        <th mat-header-cell *matHeaderCellDef> Popularity </th>
-        <td mat-cell *matCellDef="let track"> {{track.popularity}} </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let track">
-          <button mat-flat-button color="accent" [routerLink]="['track', track.id]"><span class="text-nowrap">Show album</span></button>
-        </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-    </table>  
+    <app-grid 
+      [@playlistAnimation]="dataSource.data.length" 
+      mat-table 
+      [dataSource]="dataSource"
+      [columnsToDisplay]="columnsToDisplay"></app-grid>
   </div>
   
 </div>
