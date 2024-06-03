@@ -11,7 +11,9 @@ export class AuthService {
   private clientSecret = '37b3164ac9ce49589cbf64be6ca1b1e0';
   private tokenUrl = 'https://accounts.spotify.com/api/token';
   private accessToken: string = '';
+  private tokenExpiration: number = 0;
   private localStorageKey: string = 'spotify_access_token';
+  private localStorageExpirationKey: string = 'spotify_token_expiration';
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +32,9 @@ export class AuthService {
       .pipe(
         map(response => {
           this.accessToken = response.access_token;
+          this.tokenExpiration = Date.now() + response.expires_in * 1000;
           localStorage.setItem(this.localStorageKey, this.accessToken);
+          localStorage.setItem(this.localStorageExpirationKey, this.tokenExpiration.toString());
           return this.accessToken;
         }),
         catchError(error => {
@@ -41,6 +45,18 @@ export class AuthService {
   }
 
   getCachedToken(): string | null {
-    return localStorage.getItem(this.localStorageKey);
+    const token = localStorage.getItem(this.localStorageKey);
+
+    if(!token) {
+      return null
+    }
+
+    const expiration = parseInt(localStorage.getItem(this.localStorageExpirationKey) || '0', 10);
+
+    if (Date.now() >= expiration) {
+      return null;
+    }
+
+    return token
   }
 }
