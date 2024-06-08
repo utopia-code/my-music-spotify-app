@@ -58,7 +58,9 @@ export class PlaylistComponent implements OnInit {
 
         this.dataSource.data = this.grids;
 
-        this.showSpinner(false);;
+        setTimeout(() => {
+          this.showSpinner(false);
+        }, 500);
       });
   }
 
@@ -109,7 +111,6 @@ export class PlaylistComponent implements OnInit {
   }
 
   onToggleChange(value: string) {
-    this.showSpinner(true);
 
     if ( value === 'grid') {
       this.showCardsLayout = false;
@@ -119,8 +120,5 @@ export class PlaylistComponent implements OnInit {
       this.showGridLayout = false;
     }
 
-    setTimeout(() => {
-      this.showSpinner(false);
-    }, 500);
   }
 }
