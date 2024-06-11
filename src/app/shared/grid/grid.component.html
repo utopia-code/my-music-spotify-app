@@ -17,17 +17,17 @@
 
   <ng-container matColumnDef="albumType">
     <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let track"> {{track.albumType}} </td>
+    <td mat-cell *matCellDef="let track"> {{track.type}} </td>
   </ng-container>
 
   <ng-container matColumnDef="duration">
     <th mat-header-cell *matHeaderCellDef> Duration </th>
-    <td mat-cell *matCellDef="let track"> {{track.duration}} </td>
+    <td class="nowrap" mat-cell *matCellDef="let track"> {{track.duration | duration}} </td>
   </ng-container>
 
   <ng-container matColumnDef="popularity">
     <th mat-header-cell *matHeaderCellDef> Popularity </th>
-    <td mat-cell *matCellDef="let track"> {{track.popularity}} </td>
+    <td class="center" mat-cell *matCellDef="let track"> {{track.popularity}} </td>
   </ng-container>
 
   <ng-container matColumnDef="id">
