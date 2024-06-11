@@ -37,18 +37,18 @@ export class TrackComponent implements OnInit {
     const identifier = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (identifier) {
-      this.playlistService.getTrackById(identifier).subscribe((track: any) => {
+      this.playlistService.getTrackById(identifier).subscribe((track: TrackDTO) => {
 
         this.track = {
           id: track.id,
-          album: track.album.name,
-          albumType: track.album.album_type,
-          artist: track.artists.map((artist: any) => artist.name).join(' & '),
-          image: track.album.images[0].url,
-          duration: track.duration_ms,
+          album: track.album,
+          albumType: track.albumType,
+          artist: track.artist,
+          image: track.image,
+          duration: track.duration,
           popularity: track.popularity,
-          previewURI: track.uri,
-          albumURI: track.album.uri
+          previewURI: track.previewURI,
+          albumURI: track.albumURI
         }
   
       });

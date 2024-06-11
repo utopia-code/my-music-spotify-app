@@ -48,38 +48,31 @@ export class PlaylistComponent implements OnInit {
 
     this.showSpinner(true);
 
-    this.playlistService.getAllTracks().subscribe((res) => {
-      
-        const items = res.items;
+    this.playlistService.getAllTracks().subscribe((tracks: TrackDTO[]) => {
 
-        this.tracks = this.createTracks(items);
-        this.cards = this.createCards(this.tracks);
-        this.grids = this.createGrids(this.tracks);
-
-        this.dataSource.data = this.grids;
-
-        setTimeout(() => {
-          this.showSpinner(false);
-        }, 500);
+      this.tracks = tracks.map((track: TrackDTO) => {
+        return {
+          id: track.id,
+          album: track.album,
+          albumType: track.albumType,
+          artist: track.artist,
+          image: track.image,
+          duration: track.duration,
+          popularity: track.popularity,
+          previewURI: track.previewURI,
+          albumURI: track.albumURI
+        }    
       });
-  }
+      
+      this.cards = this.createCards(this.tracks);
+      this.grids = this.createGrids(this.tracks);
 
-  createTracks(items: any): TrackDTO[] {
-    return items.map((item: any) => {
-      const track = item.track;
+      this.dataSource.data = this.grids;
 
-      return {
-        id: track.id,
-        album: track.album.name,
-        albumType: track.album.album_type,
-        artist: track.artists.map((artist: any) => artist.name).join(' & '),
-        image: track.album.images[0].url,
-        duration: track.duration_ms,
-        popularity: track.popularity,
-        previewURI: track.preview_url,
-        albumURI: track.external_urls.spotify
-      }    
-    })
+      setTimeout(() => {
+        this.showSpinner(false);
+      }, 500);
+    });
   }
 
   createCards(tracks: TrackDTO[]): CardDTO[] {
